@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    // Function to play text-to-speech
+    function speakText(text) {
+      const msg = new SpeechSynthesisUtterance(text);
+      window.speechSynthesis.speak(msg);
+    }
+  </script>
+</head>
+<body>
+  <div id="content">
+    <h1>Welcome to My Interactive Portfolio</h1>
+    <p>Meet your guide: <span id="robot-name">Robot Guide</span></p>
+
+    <!-- Java Applet Section -->
+    <div id="applet-container">
+      <object type="application/x-java-applet" data="RobotApplet.class" width="400" height="400" id="robotApplet"></object>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div id="navigation">
+      <button onclick="showAbout()">About Me</button>
+      <button onclick="showProjects()">Projects</button>
+      <button onclick="showContact()">Contact</button>
+    </div>
+
+    <!-- Dialogue Section (For Robot's Speech) -->
+    <div id="robot-dialogue">
+      <p id="dialogue-text">Hello, I am your robot guide!</p>
+    </div>
+  </div>
+
+  <script>
+    // JavaScript for interactive navigation and robot dialogue
+    function showAbout() {
+      document.getElementById("dialogue-text").innerText = "Let me tell you about myself!";
+      speakText("Let me tell you about myself.");
+    }
+
+    function showProjects() {
+      document.getElementById("dialogue-text").innerText = "Here are some of my projects!";
+      speakText("Here are some of my projects!");
+    }
+
+    function showContact() {
+      document.getElementById("dialogue-text").innerText = "Here's how to contact me!";
+      speakText("Here's how to contact me!");
+    }
+  </script>
+</body>
+</html>

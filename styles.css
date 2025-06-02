@@ -1,0 +1,43 @@
+/* Basic Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    text-align: center;
+  }
+  
+  #content {
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  #applet-container {
+    margin: 20px auto;
+    width: 420px;
+  }
+  
+  #navigation button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 1.2em;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  #navigation button:hover {
+    background-color: #45a049;
+  }
+  
+  #robot-dialogue {
+    margin-top: 30px;
+    font-size: 1.2em;
+    font-style: italic;
+    color: #333;
+  }
+  

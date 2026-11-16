@@ -1,12 +1,20 @@
-# Robot Applet
+<div align="center">
 
-A Java applet that draws a simple robot with AWT graphics, embedded in an "interactive portfolio" web page with a talking robot guide.
+# 🤖 Robot Applet
 
-![Java](https://img.shields.io/badge/Java-ED8B00?style=flat&logo=openjdk&logoColor=white)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
-![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+**A Java AWT robot drawing that runs as a desktop app or a classic applet, plus a web page with a talking robot guide.**
+
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
+
+[Features](#features) · [Tech Stack](#tech-stack) · [Getting Started](#getting-started) · [Project Structure](#project-structure)
+
+</div>
+
+---
 
 ## Overview
 
@@ -17,6 +25,7 @@ This is a small Java project that uses the Applet API. `RobotApplet` extends `ja
 - **Java applet** (`RobotApplet.java`)
   - Sets a 400×400 white canvas in `init()`
   - Draws the robot in `paint()` with filled rectangles, ovals and lines in several colours
+  - Has a `main` method that shows the applet in an AWT window, so it runs as a normal desktop app with `java RobotApplet`
 - **Interactive web page** (`RobotApplet.html`)
   - Embeds the compiled applet with an `<object>` tag
   - **About Me**, **Projects** and **Contact** buttons update the robot's dialogue text
@@ -27,32 +36,33 @@ This is a small Java project that uses the Applet API. `RobotApplet` extends `ja
 
 | Area | Technology |
 | ---- | ---------- |
-| Applet | Java (`java.applet.Applet`, AWT `Graphics`, `Color`) |
+| Applet / desktop app | Java (`java.applet.Applet`, AWT `Frame`, `Graphics`, `Color`) |
 | Page | HTML5, CSS3 |
 | Interactivity | JavaScript, Web Speech API (`SpeechSynthesisUtterance`) |
 
 ## Getting Started
 
-> **Note:** Java applets are no longer supported by modern browsers, and the Applet API has been deprecated since Java 9 and removed from recent JDKs. The HTML page's buttons and text-to-speech work in any browser, but the applet itself does not render there. Use `appletviewer` from JDK 8 to view the applet.
-
 ### Prerequisites
 
-- A JDK that still includes `java.applet` (JDK 8 is recommended, because it also ships `appletviewer`)
+- A JDK (8 or later) that still includes `java.applet`. The Applet API is deprecated for removal; this project was tested with JDK 24.
 - A modern web browser for the HTML page
 
-### Compile
+### Run as a desktop app (recommended)
 
 ```bash
 git clone https://github.com/Swayam7024/java_aplet.git
 cd java_aplet
 javac RobotApplet.java
+java RobotApplet
 ```
 
-The repository already contains a compiled `RobotApplet.class`, built with JDK 24 (class file version 68). Recompile it if you use an older JDK.
+A 400×400 window opens and draws the robot. Close the window to exit.
 
-### Run the applet
+The committed `RobotApplet.class` files were compiled with `javac --release 8`, so they also run on Java 8 without recompiling. You may see a deprecation warning when compiling on a newer JDK; it is safe to ignore.
 
-Use `appletviewer` (JDK 8). It reads the applet tag from an HTML file:
+### Run as an applet (optional, JDK 8)
+
+Browsers no longer run Java applets. To see it as an applet, use `appletviewer` from JDK 8:
 
 ```bash
 appletviewer RobotApplet.html
@@ -62,21 +72,22 @@ If `appletviewer` does not pick up the `<object>` tag, create a minimal HTML fil
 
 ### Open the web page
 
-Open `RobotApplet.html` in a browser to try the navigation buttons and the text-to-speech dialogue.
+Open `RobotApplet.html` in a browser to try the navigation buttons and the text-to-speech dialogue. (The embedded applet itself does not render in modern browsers.)
 
 ## Project Structure
 
 ```
 java_aplet/
-├── RobotApplet.java    # Applet source: draws the robot
-├── RobotApplet.class   # Compiled applet
+├── RobotApplet.java    # Applet source: draws the robot; main() runs it in a window
+├── RobotApplet.class   # Compiled applet (Java 8 bytecode)
+├── RobotApplet$1.class # Compiled window-close handler used by main()
 ├── RobotApplet.html    # Portfolio page that embeds the applet; JS robot dialogue
 └── styles.css          # Page styles
 ```
 
 ## Future Improvements
 
-- Port the drawing to a Swing `JPanel` or an HTML5 `<canvas>` so it runs on current JDKs and browsers
+- Port the drawing to a Swing `JPanel` or an HTML5 `<canvas>`, since the Applet API is being removed from future JDKs
 - Animate the robot (waving arms, blinking eyes) and sync it with the spoken dialogue
 - Fill the About, Projects and Contact sections with real content
 

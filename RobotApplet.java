@@ -1,6 +1,18 @@
 import java.applet.Applet;
-import java.awt.Graphics;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+/**
+ * Draws a simple robot with AWT graphics.
+ *
+ * Runs as a classic applet (appletviewer) or as a normal desktop app:
+ *   javac RobotApplet.java
+ *   java RobotApplet
+ */
 
 public class RobotApplet extends Applet {
     
@@ -33,5 +45,30 @@ public class RobotApplet extends Applet {
         g.drawLine(250, 230, 280, 270);  // Right Arm
         g.drawLine(170, 350, 170, 400);  // Left Leg
         g.drawLine(230, 350, 230, 400);  // Right Leg
+    }
+
+    /** Desktop entry point: shows the applet inside an AWT window. */
+    public static void main(String[] args) {
+        final RobotApplet applet = new RobotApplet();
+        applet.setPreferredSize(new Dimension(400, 400));
+
+        final Frame frame = new Frame("Robot Applet");
+        frame.add(applet);
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                applet.stop();
+                applet.destroy();
+                frame.dispose();
+                System.exit(0);
+            }
+        });
+
+        applet.init();
+        frame.pack();
+        frame.setResizable(false);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        applet.start();
     }
 }
